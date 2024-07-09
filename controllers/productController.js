@@ -190,9 +190,12 @@ const addProductController = async (req, res) => {
         await newProduct.save();
         const imageUrl = `/uploads/${image}`; // Construct the image URL
         res.json({ success: true, message: "Product added successfully", imageUrl }); // Corrected variable name
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Error uploading product" });
+ } catch (error) {
+    console.error("Error details:", error);
+    if (error.name === 'ValidationError') {
+        res.status(400).json({ success: false, message: "Validation error", errors: error.errors });
+    } else {
+        res.status(500).json({ success: false, message: "Internal server error", error: error.message });
     }
 }
 
