@@ -25,8 +25,7 @@ const port = 5001;
 //middlewares
 const corsOptions = {
   origin: 'https://farsha-front.vercel.app', // Allow only this origin to access
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowable methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowable headers
+  optionsSuccessStatus: 200 // For legacy browser support
 };
 
 app.use(cors(corsOptions));
