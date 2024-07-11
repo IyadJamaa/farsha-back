@@ -61,9 +61,7 @@ const productController= require ("../controllers/productController");
 
 
 const productRouter = express.Router();
-const productController= require ("../controllers/productController");
 
-const productRouter = express.Router();
 
 productRouter.get("/getproducts", productController.getProductController);
 productRouter.get("/getproducts/:id", productController.ProductId);
