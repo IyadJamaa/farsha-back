@@ -140,6 +140,8 @@
 const  Product = require ("../models/productModel.js");
 const path = require('path')
 
+const cloudinary = require("../utils/cloud.js")
+
 //for add or fetch
  const getProductController = async (req, res) => {
     try {
@@ -176,7 +178,11 @@ const addProductController = async (req, res) => {
     try {
         const { name, category, subCategory, subSubCategory, price , additions } = req.body;
         const image = req.file.path; // Corrected variable name
-    
+
+        const imageUrl = await cloudinary.uploader.upload(req.file.path, {
+          folder: `${process.env.FOLDER_CLOUD_NAME}/uploads`,
+        });
+
         const newProduct = new Product({
           name,
           category,
@@ -184,13 +190,15 @@ const addProductController = async (req, res) => {
           subSubCategory,
           price,
           additions,
-          image // Corrected variable name
+          image: { url: imageUrl.url } // Corrected variable name
         });
     
         await newProduct.save();
-        const imageUrl = `/uploads/${image}`; // Construct the image URL
+
+      
+
         res.json({ success: true, message: "Product added successfully", imageUrl }); // Corrected variable name
- } catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Error uploading product" });
     }

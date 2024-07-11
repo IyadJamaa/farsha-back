@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
     subSubCategory:{ type: String },
     additions: [{ type: String }],
     price: { type: Number, required: true },
-    image: { type: String, required: true }
+    image: { url: {type: String, required: true} }
 
 }, {
     //for date
