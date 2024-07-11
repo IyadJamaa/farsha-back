@@ -12,8 +12,12 @@
         "dest": "server.js",
         "methods": ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
       }
-    ],
-"headers": [
+    ]
+    
+  }
+
+{
+  "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
@@ -24,5 +28,4 @@
       ]
     }
   ]
-    
-  }
+}
