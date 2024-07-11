@@ -37,12 +37,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 // app.use(morgan("dev"));
 
 //routes
-app.use('/products/', productRouter);
-app.use('/users/', userRouter);
-app.use('/bills/', billsRouter);
-app.use('/items/', itemRouter);
-
-
+app.use('/api/products/', productRouter);
+app.use('/api/users/', userRouter);
+app.use('/api/bills/', billsRouter);
+app.use('/api/items/', itemRouter);
 
 // Serve uploaded images statically
 app.use('/uploads', express.static('uploads'));
