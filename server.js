@@ -23,12 +23,12 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 const app = express();
 const port = 5001;
 //middlewares
-const corsOptions = {
-  origin: 'https://farsha-front.vercel.app', // Allow only this origin to access
-  optionsSuccessStatus: 200 // For legacy browser support
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'https://farsha-front.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Date', 'X-Api-Version'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use(bodyParser.json());
